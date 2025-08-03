@@ -135,7 +135,7 @@ function Ball(left, right, width, height, src){
 	}
 	this.action=function(){
 		var _this=this;
-		this.runTime=setInterval(function(){_this._ballRun()}, 25);
+		this.runTime=setInterval(function(){_this._ballRun()}, 10);
 		setTimeout(function(){_this.ready=true}, 400);
 	}
 //construct___________________________________________________________________________________________________________________________
