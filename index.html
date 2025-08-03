@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>WebProject</title>
+<meta http-equiv="content-type" content="text/html; charset='Big5'" />
+<script type="text/javascript" language="javascript" src="WebProject/UI.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Table.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Shape.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Block.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Ball.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Capsule.js"></script>
+<script type="text/javascript" language="javascript" src="WebProject/Main.js"></script>
+<script>
+function cacheImg(){
+	var i=0;
+	cache=new Array();
+	brickImg=new Array();
+	for(i=0; i<10; i++){
+		cache.push(new Image());
+	}
+	cache[0].src="WebProject/block.JPG";
+	cache[1].src="WebProject/ball.gif";
+	cache[2].src="WebProject/brick2.JPG";
+	cache[3].src="WebProject/stick.JPG";
+	cache[4].src="WebProject/capsule.JPG";
+	cache[5].src="WebProject/brickWall.JPG";
+	cache[6].src="WebProject/bom.gif";
+	cache[7].src="WebProject/background.JPG";
+	cache[8].src="WebProject/black.gif";
+	cache[9].src="WebProject/back.JPG";
+	for(i=0; i<9; i++){
+		brickImg.push(new Image());
+		brickImg[i].src="WebProject/brick"+eval(i+1)+".JPG";
+	}
+}
+function initial(){
+	var string=new Array();
+	var i=0, j=0;	
+	document.body.innerHTML="";
+	//loadBackground();
+	loadWall();
+	switch(allCur){
+		case 0:
+			allTime=60;
+			loadBrick(
+			"0000000000000000000",
+			"1111111111111111111",
+			"0000000000000000000",
+			"1111111111111111111",
+			"0000000000000000000",
+			"1111111111111111111",
+			"0000000000000000000",
+			"0000000000000000000",
+			"0000000000000000000",
+			"0000000000000000000",
+			"0000000000000000000");
+			break;
+		case 1:
+			allTime=60;
+			loadBrick(
+			"0000000000000000000",
+			"0200020666660800080", 
+			"0020200000600800080",
+			"0002000006000800080",
+			"0002000060000800080",
+			"0002000666660888880",
+			"0000000000000000000",
+			"0000000000000000000",
+			"000x0x0x0x0x0x0x0x0x0x0x0x0x0x0x0x0x",
+			"1111111111111111111");
+			break;
+			case 2:
+			allTime=120;
+			string[0]=string[10]="";
+			for(i=1; i<10; i++){
+				string[i]="";
+				for(j=0; j<18; j++){
+					if(Math.random()<=0.5){
+						string[i]+=String.fromCharCode(48+Math.floor(Math.random()*12));
+					}else{
+						string[i]+="0";
+					}
+				}
+			}
+			loadBrick(string[0], string[1], string[2], string[3], string[4], string[5], string[6], string[7], string[8], string[9], string[10]);
+			break;
+		default:
+			showStr("沒這關卡 (Error in "+allCur+" )");
+			return;
+	}
+	loadStick();
+	loadBall();
+	loadCapsule();
+	loadTable();
+		switch(allCur){
+		case 0:
+			table.setEvents(0, 1, 2, 3, 4, 5, 5, 5, 6, 7);
+			break;
+		case 1:
+			table.setEvents(0, 1, 2, 3, 4, 6, 7, 8, 8, 8);
+			break;
+		case 2:
+			table.setEvents(0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 8, 8, 9, 9);
+			break;
+		default:
+			showStr("沒這關卡 (Error in "+allCur+" )");
+			return;
+	}
+	loadUI();
+	start=false;
+	end=false;
+}
+</script>
+</head>
+<body onload="cacheImg(); mainMenu()" onmousemove="stickMove(event)" onclick="onStart(event)">
+</body>
+</html>
