@@ -108,7 +108,7 @@ function Ball(left, right, width, height, src){
 							showStr("You Win. Score: "+allScore);
 							return;
 						}
-						showStr("²Ä "+eval(allCur+1)+" Ãö", true);
+						showStr("ï¿½ï¿½ "+eval(allCur+1)+" ï¿½ï¿½", true);
 						setTimeout("initial()", 2000);
 						return;
 					}
@@ -135,7 +135,7 @@ function Ball(left, right, width, height, src){
 	}
 	this.action=function(){
 		var _this=this;
-		this.runTime=setInterval(function(){_this._ballRun()}, 5);
+		this.runTime=setInterval(function(){_this._ballRun()}, 25);
 		setTimeout(function(){_this.ready=true}, 400);
 	}
 //construct___________________________________________________________________________________________________________________________
